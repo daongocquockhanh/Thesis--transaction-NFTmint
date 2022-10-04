@@ -3,19 +3,19 @@ import { TwitterContext } from '../context/TwitterContext'
 import Sidebar from '../components/Sidebar'
 import Feed from '../components/home/Feed'
 import Widgets from '../components/Widgets'
+// import  Transaction  from '../components/home/Transaction'
 import Image from 'next/image'
 import metamaskLogo from '../assets/metamask.png'
 import errorImg from '../assets/error.png'
 
 const style = {
-  wrapper: `flex justify-center h-screen w-screen select-none text-white`,
+  wrapper: `flex justify-center h-max w-screen select-none text-white`,
   content: `max-w-[1400px] w-3/3 flex justify-between`,
-  loginContainer: `w-full h-full flex flex-col justify-center items-center pb-48`,
+  loginContainer: `w-full h-full flex flex-col justify-center items-center pb-48 text-white`,
   walletConnectButton: `text-2xl text-black bg-white font-bold mb-[-3rem] mt-[3rem] px-6 py-4 rounded-full cursor-pointer hover:bg-[#d7dbdc]`,
   loginContent: `text-3xl font-bold text-center mt-24`,
 }
-
-export default function Home() {
+const Home = () => {
   const {appStatus, connectToWallet} = useContext(TwitterContext)
   
   const app = (status = appStatus) => {
@@ -41,6 +41,7 @@ export default function Home() {
       <Sidebar initialSelectedIcon={'Home'} />
       <Feed />
       <Widgets />
+      {/* <Transaction/> */}
     </div>
   )
 
@@ -88,14 +89,6 @@ export default function Home() {
     </div>
   )
 
-    return (
-      <div classname = {style.wrapper}>
-        <div className = {style.content}>
-        <Sidebar/>
-        <Feed/>
-        <Widgets/>
-        </div>
-      </div>
-    )
- 
+    return <div classname = {style.wrapper}>{app(appStatus)}</div>
 }
+export default Home
